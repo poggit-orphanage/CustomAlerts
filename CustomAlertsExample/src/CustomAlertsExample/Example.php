@@ -33,4 +33,3 @@ class Example extends PluginBase implements Listener {
     }
     
 }
-?>
