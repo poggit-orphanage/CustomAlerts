@@ -16,26 +16,26 @@ use pocketmine\event\plugin\PluginEvent;
 use pocketmine\level\Level;
 use pocketmine\Player;
 
-class CustomAlertsDeathEvent extends PluginEvent {
-	
+class CustomAlertsDeathEvent extends PluginEvent{
+
 	public static $handlerList = null;
-	
+
 	/** @var Player $player */
 	private $player;
-	
+
 	/** @var EntityDamageEvent|null $cause */
 	private $cause;
-	
+
 	/**
 	 * @param Player $player
-	 * @param Level $origin
-	 * @param Level $target
+	 * @param Level  $origin
+	 * @param Level  $target
 	 */
 	public function __construct(Player $player, $cause = null){
 		$this->player = $player;
 		$this->cause = $cause;
 	}
-	
+
 	/**
 	 * Get death event player
 	 *
@@ -44,7 +44,7 @@ class CustomAlertsDeathEvent extends PluginEvent {
 	public function getPlayer(){
 		return $this->player;
 	}
-	
+
 	/**
 	 * Get death event cause
 	 *
@@ -53,5 +53,5 @@ class CustomAlertsDeathEvent extends PluginEvent {
 	public function getCause(){
 		return $this->cause;
 	}
-	
+
 }

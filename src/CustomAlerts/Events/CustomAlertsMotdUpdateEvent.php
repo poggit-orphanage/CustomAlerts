@@ -14,23 +14,23 @@ namespace CustomAlerts\Events;
 use pocketmine\event\plugin\PluginEvent;
 use pocketmine\Player;
 
-class CustomAlertsMotdUpdateEvent extends PluginEvent {
-	
+class CustomAlertsMotdUpdateEvent extends PluginEvent{
+
 	public static $handlerList = null;
-	
+
 	/** @var string $pocketminemotd The default PocketMine motd message */
 	private $pocketminemessage;
-	
+
 	/**
 	 * @param string $pocketminemessage The default PocketMine motd message
 	 */
 	public function __construct($pocketminemessage){
 		$this->pocketminemessage = $pocketminemessage;
 	}
-	
+
 	/**
 	 * Get default PocketMine Motd message
-	 * 
+	 *
 	 * @return string
 	 */
 	public function getPocketMineMotd(){

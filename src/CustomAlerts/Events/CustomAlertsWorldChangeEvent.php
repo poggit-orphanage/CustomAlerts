@@ -15,30 +15,30 @@ use pocketmine\event\plugin\PluginEvent;
 use pocketmine\level\Level;
 use pocketmine\Player;
 
-class CustomAlertsWorldChangeEvent extends PluginEvent {
-	
+class CustomAlertsWorldChangeEvent extends PluginEvent{
+
 	public static $handlerList = null;
-	
+
 	/** @var Player $player */
 	private $player;
-	
+
 	/** @var Level $origin */
 	private $origin;
-	
+
 	/** @var Level $target */
 	private $target;
-	
+
 	/**
 	 * @param Player $player
-	 * @param Level $origin
-	 * @param Level $target
+	 * @param Level  $origin
+	 * @param Level  $target
 	 */
 	public function __construct(Player $player, Level $origin, Level $target){
 		$this->player = $player;
 		$this->origin = $origin;
 		$this->target = $target;
 	}
-	
+
 	/**
 	 * Get world change event player
 	 *
@@ -47,7 +47,7 @@ class CustomAlertsWorldChangeEvent extends PluginEvent {
 	public function getPlayer(){
 		return $this->player;
 	}
-	
+
 	/**
 	 * Get origin level
 	 *
@@ -56,7 +56,7 @@ class CustomAlertsWorldChangeEvent extends PluginEvent {
 	public function getOrigin(){
 		return $this->origin;
 	}
-	
+
 	/**
 	 * Get target level
 	 *
@@ -65,5 +65,5 @@ class CustomAlertsWorldChangeEvent extends PluginEvent {
 	public function getTarget(){
 		return $this->target;
 	}
-	
+
 }

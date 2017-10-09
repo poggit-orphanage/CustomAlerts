@@ -16,27 +16,27 @@ use pocketmine\utils\TextFormat;
 
 use CustomAlerts\Events\CustomAlertsMotdUpdateEvent;
 
-class MotdTask extends PluginTask {
+class MotdTask extends PluginTask{
 
 	private $plugin;
 	private $counter;
 
-    public function __construct(CustomAlerts $plugin){
-    	parent::__construct($plugin);
-        $this->plugin = $plugin;
-        $this->counter = 0;
-    }
-    
-    public function onRun(int $tick){
-    	$cfg = $this->plugin->getConfig()->getAll();
-    	$this->counter += 1;
-    	if($this->counter >= $cfg["Motd"]["update-timeout"]){
-    		//Check if Motd message is custom
-    		if(CustomAlerts::getAPI()->isMotdCustom()){
-    			CustomAlerts::getAPI()->setMotdMessage(CustomAlerts::getAPI()->getDefaultMotdMessage());
-    		}
+	public function __construct(CustomAlerts $plugin){
+		parent::__construct($plugin);
+		$this->plugin = $plugin;
+		$this->counter = 0;
+	}
+
+	public function onRun(int $tick){
+		$cfg = $this->plugin->getConfig()->getAll();
+		$this->counter += 1;
+		if($this->counter >= $cfg["Motd"]["update-timeout"]){
+			//Check if Motd message is custom
+			if(CustomAlerts::getAPI()->isMotdCustom()){
+				CustomAlerts::getAPI()->setMotdMessage(CustomAlerts::getAPI()->getDefaultMotdMessage());
+			}
 			$this->plugin->getServer()->getPluginManager()->callEvent(new CustomAlertsMotdUpdateEvent($this->plugin->getServer()->getMotd()));
-    		$this->counter = 0;
-    	}
-    }
+			$this->counter = 0;
+		}
+	}
 }

@@ -14,16 +14,16 @@ namespace CustomAlerts\Events;
 use pocketmine\event\plugin\PluginEvent;
 use pocketmine\Player;
 
-class CustomAlertsJoinEvent extends PluginEvent {
-	
+class CustomAlertsJoinEvent extends PluginEvent{
+
 	public static $handlerList = null;
-	
+
 	/** @var Player $player */
 	private $player;
-	
+
 	/** @var string $pocketminemessage The default PocketMine join message */
 	private $pocketminemessage;
-	
+
 	/**
 	 * @param Player $player
 	 * @param string $pocketminemessage The default PocketMine join message
@@ -35,16 +35,16 @@ class CustomAlertsJoinEvent extends PluginEvent {
 
 	/**
 	 * Get join event player
-	 * 
+	 *
 	 * @return Player
 	 */
 	public function getPlayer(){
 		return $this->player;
 	}
-	
+
 	/**
 	 * Get default PocketMine join message
-	 * 
+	 *
 	 * @return string
 	 */
 	public function getPocketMineJoinMessage(){

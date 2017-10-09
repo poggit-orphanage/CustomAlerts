@@ -14,16 +14,16 @@ namespace CustomAlerts\Events;
 use pocketmine\event\plugin\PluginEvent;
 use pocketmine\Player;
 
-class CustomAlertsQuitEvent extends PluginEvent {
-	
+class CustomAlertsQuitEvent extends PluginEvent{
+
 	public static $handlerList = null;
-	
+
 	/** @var Player $player */
 	private $player;
-	
+
 	/** @var string $pocketminemessage The default PocketMine quit message */
 	private $pocketminemessage;
-	
+
 	/**
 	 * @param Player $player
 	 * @param string $pocketminemessage The default PocketMine quit message
@@ -32,7 +32,7 @@ class CustomAlertsQuitEvent extends PluginEvent {
 		$this->player = $player;
 		$this->pocketminemessage = $pocketminemessage;
 	}
-	
+
 	/**
 	 * Get quit event player
 	 *
@@ -41,7 +41,7 @@ class CustomAlertsQuitEvent extends PluginEvent {
 	public function getPlayer(){
 		return $this->player;
 	}
-	
+
 	/**
 	 * Get default PocketMine quit message
 	 *
