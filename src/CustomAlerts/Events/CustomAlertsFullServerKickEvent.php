@@ -4,7 +4,7 @@
  * CustomAlerts (v1.6) by EvolSoft
  * Developer: EvolSoft (Flavius12)
  * Website: http://www.evolsoft.tk
- * Date: 09/05/2015 01:47 PM (UTC)
+ * Date: 14/07/2015 01:33 PM (UTC)
  * Copyright & License: (C) 2014-2015 EvolSoft
  * Licensed under MIT (https://github.com/EvolSoft/CustomAlerts/blob/master/LICENSE)
  */
@@ -14,7 +14,7 @@ namespace CustomAlerts\Events;
 use pocketmine\event\plugin\PluginEvent;
 use pocketmine\Player;
 
-class CustomAlertsOutdatedServerKickEvent extends PluginEvent {
+class CustomAlertsFullServerKickEvent extends PluginEvent {
 	
 	public static $handlerList = null;
 	
@@ -29,7 +29,7 @@ class CustomAlertsOutdatedServerKickEvent extends PluginEvent {
 	}
 
 	/**
-	 * Get outdated server kick event player
+	 * Get full server kick event player
 	 * 
 	 * @return Player
 	 */
@@ -37,4 +37,3 @@ class CustomAlertsOutdatedServerKickEvent extends PluginEvent {
 		return $this->player;
 	}
 }
-?>

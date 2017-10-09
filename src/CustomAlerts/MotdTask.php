@@ -17,15 +17,17 @@ use pocketmine\utils\TextFormat;
 use CustomAlerts\Events\CustomAlertsMotdUpdateEvent;
 
 class MotdTask extends PluginTask {
-	
+
+	private $plugin;
+	private $counter;
+
     public function __construct(CustomAlerts $plugin){
     	parent::__construct($plugin);
         $this->plugin = $plugin;
-        $this->plugin = $this->getOwner();
         $this->counter = 0;
     }
     
-    public function onRun($tick){
+    public function onRun(int $tick){
     	$cfg = $this->plugin->getConfig()->getAll();
     	$this->counter += 1;
     	if($this->counter >= $cfg["Motd"]["update-timeout"]){
@@ -38,4 +40,3 @@ class MotdTask extends PluginTask {
     	}
     }
 }
-?>

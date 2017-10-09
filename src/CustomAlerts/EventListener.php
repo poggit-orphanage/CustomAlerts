@@ -21,6 +21,7 @@ use pocketmine\event\player\PlayerPreLoginEvent;
 use pocketmine\event\player\PlayerQuitEvent;
 use pocketmine\event\server\DataPacketReceiveEvent;
 use pocketmine\network\mcpe\protocol\DataPacket;
+use pocketmine\network\mcpe\protocol\LoginPacket;
 use pocketmine\network\mcpe\protocol\ProtocolInfo;
 use pocketmine\Player;
 use pocketmine\Server;
@@ -44,7 +45,7 @@ class EventListener implements Listener {
     public function onReceivePacket(DataPacketReceiveEvent $event){
     	$player = $event->getPlayer();
     	$packet = $event->getPacket();
-    	if($packet->pid() == ProtocolInfo::LOGIN_PACKET){
+    	if($packet instanceof LoginPacket){
     		if($packet->protocol < ProtocolInfo::CURRENT_PROTOCOL){
     			//Check if outdated client message is custom
     			if(CustomAlerts::getAPI()->isOutdatedClientMessageCustom()){
@@ -130,7 +131,9 @@ class EventListener implements Listener {
     	$status = 0;
     	CustomAlerts::getAPI()->setJoinMessage($event->getJoinMessage());
     	//Get First Join
-    	if(!$player->hasPlayedBefore()){
+    	if(CustomAlerts::getAPI()->hasJoinedFirstTime($player)){
+    		//Register FirstJoin
+    		CustomAlerts::getAPI()->registerFirstJoin($player);
     		//Check if FirstJoin message is enabled
     		if(CustomAlerts::getAPI()->isDefaultFirstJoinMessageEnabled()){
     			CustomAlerts::getAPI()->setJoinMessage(CustomAlerts::getAPI()->getDefaultFirstJoinMessage($player));
@@ -231,4 +234,3 @@ class EventListener implements Listener {
     }
 	
 }
-?>

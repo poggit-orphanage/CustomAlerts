@@ -4,43 +4,40 @@
  * CustomAlerts (v1.6) by EvolSoft
  * Developer: EvolSoft (Flavius12)
  * Website: http://www.evolsoft.tk
- * Date: 09/05/2015 01:04 PM (UTC)
+ * Date: 09/05/2015 01:12 PM (UTC)
  * Copyright & License: (C) 2014-2015 EvolSoft
  * Licensed under MIT (https://github.com/EvolSoft/CustomAlerts/blob/master/LICENSE)
  */
 
 namespace CustomAlerts\Events;
 
+use pocketmine\event\entity\EntityDamageEvent;
 use pocketmine\event\plugin\PluginEvent;
 use pocketmine\level\Level;
 use pocketmine\Player;
 
-class CustomAlertsWorldChangeEvent extends PluginEvent {
+class CustomAlertsDeathEvent extends PluginEvent {
 	
 	public static $handlerList = null;
 	
 	/** @var Player $player */
 	private $player;
 	
-	/** @var Level $origin */
-	private $origin;
-	
-	/** @var Level $target */
-	private $target;
+	/** @var EntityDamageEvent|null $cause */
+	private $cause;
 	
 	/**
 	 * @param Player $player
 	 * @param Level $origin
 	 * @param Level $target
 	 */
-	public function __construct(Player $player, Level $origin, Level $target){
+	public function __construct(Player $player, $cause = null){
 		$this->player = $player;
-		$this->origin = $origin;
-		$this->target = $target;
+		$this->cause = $cause;
 	}
 	
 	/**
-	 * Get world change event player
+	 * Get death event player
 	 *
 	 * @return Player
 	 */
@@ -49,22 +46,12 @@ class CustomAlertsWorldChangeEvent extends PluginEvent {
 	}
 	
 	/**
-	 * Get origin level
+	 * Get death event cause
 	 *
-	 * @return Level
+	 * @return EntityDamageEvent|null
 	 */
-	public function getOrigin(){
-		return $this->origin;
-	}
-	
-	/**
-	 * Get target level
-	 *
-	 * @return Level
-	 */
-	public function getTarget(){
-		return $this->target;
+	public function getCause(){
+		return $this->cause;
 	}
 	
 }
-?>

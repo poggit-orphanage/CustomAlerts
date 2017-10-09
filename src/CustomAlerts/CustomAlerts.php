@@ -91,7 +91,7 @@ class CustomAlerts extends PluginBase {
 	/**
 	 * Translate Minecraft colors
 	 *
-	 * @param char $symbol Color symbol
+	 * @param string $symbol Color symbol
 	 * @param string $message The message to be translated
 	 *
 	 * @return string The translated message
@@ -127,6 +127,7 @@ class CustomAlerts extends PluginBase {
 	
     public function onEnable(){
     	@mkdir($this->getDataFolder());
+    	@mkdir($this->getDataFolder() . "data/");
     	$this->saveDefaultConfig();
     	$this->cfg = $this->getConfig()->getAll();
     	$this->getCommand("customalerts")->setExecutor(new Commands\Commands($this));
@@ -144,7 +145,7 @@ class CustomAlerts extends PluginBase {
      *
      * @return string CustomAlerts version
      */
-    public function getVersion(){
+    public function getVersion() : string {
     	return CustomAlerts::VERSION;
     }
     
@@ -423,6 +424,30 @@ class CustomAlerts extends PluginBase {
     	return $this->translateColors("&", $message);
     }
     
+    /**
+     * Register the first join of a player (don't use this function)
+     * @param Player $player
+     */
+    public function registerFirstJoin(Player $player){
+    	$cfg = new Config($this->getDataFolder() . "data/" . strtolower($player->getName() . ".dat"));
+    	$cfg->save();
+    }
+
+    /**
+     * Check if a player has joined for the first time
+     *
+     * @param Player $player
+     *
+     * @return boolean
+     */
+    public function hasJoinedFirstTime(Player $player){
+    	if(file_exists($this->getDataFolder() . "data/" . strtolower($player->getName() . ".dat"))){
+    		return false;
+    	}else{
+    		return true;
+    	}
+    }
+
     /**
      * Check if default join message is custom
      * 
@@ -756,4 +781,3 @@ class CustomAlerts extends PluginBase {
     }
 
 }
-?>
