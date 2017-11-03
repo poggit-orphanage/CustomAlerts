@@ -12,7 +12,6 @@
 namespace CustomAlerts\Events;
 
 use pocketmine\event\plugin\PluginEvent;
-use pocketmine\Player;
 
 class CustomAlertsMotdUpdateEvent extends PluginEvent{
 

@@ -11,8 +11,6 @@
 
 namespace CustomAlerts;
 
-use pocketmine\command\CommandExecutor;
-use pocketmine\command\CommandSender;
 use pocketmine\entity\Living;
 use pocketmine\event\entity\EntityDamageByBlockEvent;
 use pocketmine\event\entity\EntityDamageEvent;
@@ -610,11 +608,11 @@ class CustomAlerts extends PluginBase{
 	/**
 	 * Check if death messages are custom
 	 *
-	 * @param EntityDeathEvent $cause Check message by cause
+	 * @param EntityDamageEvent $cause Check message by cause
 	 *
 	 * @return boolean
 	 */
-	public function isDeathCustom($cause = null){
+	public function isDeathCustom(EntityDamageEvent $cause = null){
 		$cfg = $this->getConfig()->getAll();
 		if($cause instanceof EntityDamageEvent){
 			if($cause->getCause() == EntityDamageEvent::CAUSE_CONTACT){
@@ -658,7 +656,7 @@ class CustomAlerts extends PluginBase{
 	 *
 	 * @return boolean
 	 */
-	public function isDeathHidden($cause = null){
+	public function isDeathHidden(EntityDamageEvent $cause = null){
 		$cfg = $this->getConfig()->getAll();
 		if($cause instanceof EntityDamageEvent){
 			if($cause->getCause() == EntityDamageEvent::CAUSE_CONTACT){

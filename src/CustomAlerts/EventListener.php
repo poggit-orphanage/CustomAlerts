@@ -38,6 +38,12 @@ use CustomAlerts\Events\CustomAlertsWorldChangeEvent;
 
 class EventListener implements Listener{
 
+
+    /**
+     * @var CustomAlerts
+     */
+    private $plugin;
+
 	public function __construct(CustomAlerts $plugin){
 		$this->plugin = $plugin;
 	}
