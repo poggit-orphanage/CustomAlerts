@@ -1,59 +1,27 @@
-![start2](https://cloud.githubusercontent.com/assets/10303538/6315586/9463fa5c-ba06-11e4-8f30-ce7d8219c27d.png)
+## General
 
-# CustomAlerts
+[![Poggit Release](https://poggit.pmmp.io/shield.approved/CustomAlerts)](https://poggit.pmmp.io/p/CustomAlerts)
+
 
 Customize or hide alerts (join/leave messages, whitelist messages, outdated server/client messages, etc...) plugin for PocketMine-MP
 
-## Category
-
-PocketMine-MP plugins
-
-## Requirements
-
-PocketMine-MP 3.0.0-ALPHA5
-
 ## Overview
 
-**CustomAlerts** lets you customize or hide all PocketMine alerts (join/leave messages, whitelist messages, outdated server/client messages, etc...)
 
-**EvolSoft Website:** http://www.evolsoft.tk
+With CustomAlerts you can customize or hide whitelist kick messages, outdated server/client messages, join/leave messages, first join messages, death messages, world change messages...
 
-***This Plugin uses the New API. You can't install it on old versions of PocketMine.***
-
-***To prevent bugs, delete all old plugin data if you are updating CustomAlerts.***
-
-With CustomAlerts you can customize or hide whitelist kick messages, outdated server/client messages, join/leave messages, first join messages, death messages, world change messages... (read documentation)
-
-**Features**
+## Features
 
 - Customize or hide join, quit and death messages
 - Add first join and world change messages
-- Customize Motd ***(from MCPE 0.11.0)***
-- Customize Outdated Server/Client kick messages ***(from MCPE 0.11.0 BUILD 11)***
-- Customize Whitelist kick messages ***(from MCPE 0.11.0 BUILD 11)***
-- Customize Full Server kick messages ***(from MCPE 0.11.0 BUILD 11) [Please keep in mind that if you have VIP or additional slots on your server you MUST disable this feature from config]***
+- Customize Motd
+- Customize Outdated Server/Client kick messages
+- Customize Whitelist kick messages
+- Customize Full Server kick messages
 
-**What is included?**
+## Colours
 
-In the ZIP file you will find:<br>
-*- CustomAlerts_v1.6.phar : CustomAlerts Plugin + API*<br>
-*- CustomAlertsExample_v1.2.zip : Example Plugin source code*<br>
-
-**Commands:**
-
-***/customalerts*** *- CustomAlerts commands*
-
-**To-Do:**
-
-<dd><i>- Bug fix (if bugs will be found)</i></dd>
-
-## Documentation
-
-#### For Users:
-
-**Text format (Available on PocketMine console and on MCPE v0.11.0 and later):**
-
-**Colors:**
+**Colours:**
 
 Black ("&0");<br>
 Dark Blue ("&1");<br>
@@ -72,7 +40,7 @@ Light Purple ("&d");<br>
 Yellow ("&e");<br>
 White ("&f");<br>
 
-**Special:**
+## Formatting
 
 Obfuscated ("&k");<br>
 Bold ("&l");<br>
@@ -81,9 +49,10 @@ Underline ("&n");<br>
 Italic ("&o");<br>
 Reset ("&r");<br>
 
-**Configuration (config.yml):**
+## Configuration
 
-```yaml
+```
+
 ---
 #REMEMBER THAT IF YOU USE CustomAlerts EXTENSIONS, MESSAGES MAY NOT FOLLOW THE DEFAULT CONFIG
 #Date/Time format (replaced in {TIME}). For format codes read http://php.net/manual/en/datetime.formats.php
@@ -368,27 +337,25 @@ Death:
     message: "&c{PLAYER} was killed by a spell"
 ```
 
-**Commands:**
+## Permissions
 
-***/customalerts*** *- CustomAlerts commands*
-<br><br>
-**Permissions:**
-<br>
-- <dd><i><b>customalerts.*</b> - CustomAlerts permissions.</i></dd>
-- <dd><i><b>customalerts.help</b> - CustomAlerts command Help permission.</i></dd>
-- <dd><i><b>customalerts.info</b> - CustomAlerts command Info permission.</i></dd>
-- <dd><i><b>customalerts.reload</b> - CustomAlerts command Reload permission.</i></dd>
+`customalerts.help` - CustomAlerts command Help permission
 
-#### For Developers
+`customalerts.info` - CustomAlerts command Info permission
+
+`customalerts.reload`- CustomAlerts command Reload permission
+
+## Developers
 
 **Basic Tutorial:**
 
 *1. Define the plugin dependency in plugin.yml (you can check if CustomAlerts is installed in different ways):*
-```yaml
+```
 depend: [CustomAlerts]
 ```
 *2. Include CustomAlerts API and CustomAlerts Events in your php code:*
-```php
+```
+
 //PocketMine Event Listener
 use pocketmine\event\Listener;
 //CustomAlerts API
@@ -397,12 +364,14 @@ use CustomAlerts\CustomAlerts;
 use CustomAlerts\Events\CustomAlertsJoinEvent;
 ```
 *3. Create the class:*
-```php
+```
+
 class Example extends PluginBase implements Listener {
 }
 ```
 *4. Check if CustomAlerts API is compatible (insert this code in onEnable() function)*
-```php
+```
+
 if(CustomAlerts::getAPI()->getAPIVersion() == "(used API version)"){
             //API compatible
             //Register Events
@@ -414,18 +383,18 @@ if(CustomAlerts::getAPI()->getAPIVersion() == "(used API version)"){
   }
 ```
 *5. Handle a CustomAlerts event (in this tutorial we will handle the CustomAlertsJoinEvent):*
-```php
+```
+
 public function onCAJoinEvent(CustomAlertsJoinEvent $event){
   CustomAlerts::getAPI()->setJoinMessage("Example Join message: " . $event->getPlayer()->getName());
 }
 ```
 *6. Call the API function:*
-```php
+```
+
 CustomAlerts::getAPI()->api_function();
 ```
-***A full plugin example using CustomAlerts API and CustomAlerts Events is included in the ZIP file.***
 
-**CustomAlerts API Events:**
 
 ###### CustomAlertsDeathEvent:
 
@@ -435,7 +404,8 @@ Event functions are:
 
 ###### Get Player:
 
-```php
+```
+
 Player getPlayer()
 ```
 **Description:**<br>
@@ -445,7 +415,8 @@ The death event player
 
 ###### Get Cause:
 
-```php
+```
+
 EntityDamageEvent|null getCause()
 ```
 **Description:**<br>
@@ -461,7 +432,8 @@ Event functions are:
 
 ###### Get Player:
 
-```php
+```
+
 Player getPlayer()
 ```
 **Description:**<br>
@@ -477,7 +449,8 @@ Event functions are:
 
 ###### Get Player:
 
-```php
+```
+
 Player getPlayer()
 ```
 **Description:**<br>
@@ -487,7 +460,8 @@ The join event player (instance of pocketmine\Player)
 
 ###### Get default PocketMine join message:
 
-```php
+```
+
 string getPocketMineJoinMessage()
 ```
 **Description:**<br>
@@ -503,7 +477,8 @@ Event functions are:
 
 ###### Get default PocketMine Motd:
 
-```php
+```
+
 string getPocketMineMotd()
 ```
 **Description:**<br>
@@ -519,7 +494,8 @@ Event functions are:
 
 ###### Get Player:
 
-```php
+```
+
 Player getPlayer()
 ```
 **Description:**<br>
@@ -535,7 +511,8 @@ Event functions are:
 
 ###### Get Player:
 
-```php
+```
+
 Player getPlayer()
 ```
 **Description:**<br>
@@ -551,7 +528,8 @@ Event functions are:
 
 ###### Get Player:
 
-```php
+```
+
 Player getPlayer()
 ```
 **Description:**<br>
@@ -561,7 +539,8 @@ The quit event player (instance of pocketmine\Player)
 
 ###### Get default PocketMine quit message:
 
-```php
+```
+
 string getPocketMineQuitMessage()
 ```
 **Description:**<br>
@@ -577,7 +556,8 @@ Event functions are:
 
 ###### Get Player:
 
-```php
+```
+
 Player getPlayer()
 ```
 **Description:**<br>
@@ -593,7 +573,8 @@ Event functions are:
 
 ###### Get Player:
 
-```php
+```
+
 Player getPlayer()
 ```
 **Description:**<br>
@@ -603,7 +584,8 @@ The world change event player (instance of pocketmine\Player)
 
 ###### Get Origin Level:
 
-```php
+```
+
 Level getOrigin()
 ```
 **Description:**<br>
@@ -613,7 +595,8 @@ The origin level (instance of pocketmine\Level)
 
 ###### Get Target Level:
 
-```php
+```
+
 Level getTarget()
 ```
 **Description:**<br>
@@ -624,7 +607,8 @@ The target level (instance of pocketmine\Level)
 **CustomAlerts API Functions:**
 
 ###### Get Version:
-```php
+```
+
 string getVersion()
 ```
 **Description:**<br>
@@ -633,7 +617,8 @@ Get CustomAlerts plugin version<br>
 plugin version
 
 ###### Get API Version:
-```php
+```
+
 string getAPIVersion()
 ```
 **Description:**<br>
@@ -642,7 +627,8 @@ Get the CustomAlerts API version.<br>
 plugin API version
 
 ###### Check if motd message is custom:
-```php
+```
+
 boolean isMotdCustom()
 ```
 **Description:**<br>
@@ -651,7 +637,8 @@ Check if motd message is custom.<br>
 *boolean*
 
 ###### Get default motd message:
-```php
+```
+
 string getDefaultMotdMessage()
 ```
 **Description:**<br>
@@ -660,7 +647,8 @@ Get default motd message.<br>
 *string* the default motd message
 
 ###### Get current motd message:
-```php
+```
+
 string getMotdMessage()
 ```
 **Description:**<br>
@@ -669,7 +657,8 @@ Get current motd message.<br>
 *string* the current motd message
 
 ###### Set current motd message:
-```php
+```
+
 function setMotdMessage($message)
 ```
 **Description:**<br>
@@ -678,7 +667,8 @@ Set current motd message.<br>
 *$message*
 
 ###### Check if outdated client message is custom:
-```php
+```
+
 boolean isOutdatedClientMessageCustom()
 ```
 **Description:**<br>
@@ -687,7 +677,8 @@ Check if outdated client message is custom.<br>
 *boolean*
 
 ###### Get default outdated client message:
-```php
+```
+
 string getDefaultOutdatedClientMessage(Player $player)
 ```
 **Description:**<br>
@@ -698,7 +689,8 @@ Get default outdated client message.<br>
 *string* the default outdated client message
 
 ###### Get current outdated client message:
-```php
+```
+
 string getOutdatedClientMessage()
 ```
 **Description:**<br>
@@ -707,7 +699,7 @@ Get current outdated client message.<br>
 *string* the current outdated client message
 
 ###### Set current outdated client message:
-```php
+```
 function setOutdatedClientMessage($message)
 ```
 **Description:**<br>
@@ -716,7 +708,8 @@ Set current outdated client message.<br>
 *$message*
 
 ###### Check if outdated server message is custom:
-```php
+```
+
 boolean isOutdatedServerMessageCustom()
 ```
 **Description:**<br>
@@ -725,7 +718,8 @@ Check if outdated server message is custom.<br>
 *boolean*
 
 ###### Get default outdated server message:
-```php
+```
+
 string getDefaultOutdatedServerMessage(Player $player)
 ```
 **Description:**<br>
@@ -736,7 +730,8 @@ Get default outdated server message.<br>
 *string* the default outdated server message
 
 ###### Get current outdated server message:
-```php
+```
+
 string getOutdatedServerMessage()
 ```
 **Description:**<br>
@@ -745,7 +740,8 @@ Get current outdated server message.<br>
 *string* the current outdated server message
 
 ###### Set current outdated server message:
-```php
+```
+
 function setOutdatedServerMessage($message)
 ```
 **Description:**<br>
@@ -754,7 +750,8 @@ Set current outdated server message.<br>
 *$message*
 
 ###### Check if whitelist message is custom:
-```php
+```
+
 boolean isWhitelistMessageCustom()
 ```
 **Description:**<br>
@@ -763,7 +760,8 @@ Check if whitelist message is custom.<br>
 *boolean*
 
 ###### Get default whitelist message:
-```php
+```
+
 string getDefaultWhitelistMessage(Player $player)
 ```
 **Description:**<br>
@@ -774,7 +772,8 @@ Get default whitelist message.<br>
 *string* the default whitelist message
 
 ###### Get current whitelist message:
-```php
+```
+
 string getWhitelistMessage()
 ```
 **Description:**<br>
@@ -783,7 +782,8 @@ Get current whitelist message.<br>
 *string* the current whitelist message
 
 ###### Set current whitelist message:
-```php
+```
+
 function setWhitelistMessage($message)
 ```
 **Description:**<br>
@@ -792,7 +792,8 @@ Set current whitelist message.<br>
 *$message*
 
 ###### Check if full server message is custom:
-```php
+```
+
 boolean isFullServerMessageCustom()
 ```
 **Description:**<br>
@@ -801,7 +802,8 @@ Check if full server message is custom.<br>
 *boolean*
 
 ###### Get default full server message:
-```php
+```
+
 string getDefaultFullServerMessage(Player $player)
 ```
 **Description:**<br>
@@ -812,7 +814,8 @@ Get default full server message.<br>
 *string* the default full server message
 
 ###### Get current full server message:
-```php
+```
+
 string getFullServerMessage()
 ```
 **Description:**<br>
@@ -821,7 +824,8 @@ Get current full server message.<br>
 *string* the current full server message
 
 ###### Set current full server message:
-```php
+```
+
 function setFullServerMessage($message)
 ```
 **Description:**<br>
@@ -830,7 +834,8 @@ Set current full server message.<br>
 *$message*
 
 ###### Check if default first join message is enabled:
-```php
+```
+
 boolean isDefaultFirstJoinMessageEnabled()
 ```
 **Description:**<br>
@@ -839,7 +844,8 @@ Check if default first join message is enabled.<br>
 *boolean*
 
 ###### Get default first join message:
-```php
+```
+
 string getDefaultFirstJoinMessage(Player $player)
 ```
 **Description:**<br>
@@ -850,7 +856,8 @@ Get default first join message.<br>
 *string* the default first join message
 
 ###### Check if a player has joined for the first time:
-```php
+```
+
 boolean hasJoinedFirstTime(Player $player)
 ```
 **Description:**<br>
@@ -861,7 +868,8 @@ Check if a player has joined for the first time.<br>
 *boolean*
 
 ###### Check if default join message is custom:
-```php
+```
+
 boolean isDefaultJoinMessageCustom()
 ```
 **Description:**<br>
@@ -870,7 +878,8 @@ Check if default join message is custom.<br>
 *boolean*
 
 ###### Check if default join message is hidden:
-```php
+```
+
 boolean isDefaultJoinMessageHidden()
 ```
 **Description:**<br>
@@ -879,7 +888,8 @@ Check if default join message is hidden.<br>
 *boolean*
 
 ###### Get default join message:
-```php
+```
+
 string getDefaultJoinMessage(Player $player)
 ```
 **Description:**<br>
@@ -890,7 +900,8 @@ Get default join message.<br>
 *string* the default join message
 
 ###### Get current join message:
-```php
+```
+
 string getJoinMessage()
 ```
 **Description:**<br>
@@ -899,7 +910,8 @@ Get current join message.<br>
 *string* the current join message
 
 ###### Set current join message:
-```php
+```
+
 function setJoinMessage($message)
 ```
 **Description:**<br>
@@ -908,7 +920,8 @@ Set current join message.<br>
 *$message*
 
 ###### Check if default quit message is custom:
-```php
+```
+
 boolean isDefaultQuitMessageCustom()
 ```
 **Description:**<br>
@@ -917,7 +930,8 @@ Check if default quit message is custom.<br>
 *boolean*
 
 ###### Check if default quit message is hidden:
-```php
+```
+
 boolean isDefaultQuitMessageHidden()
 ```
 **Description:**<br>
@@ -926,7 +940,8 @@ Check if default quit message is hidden.<br>
 *boolean*
 
 ###### Get default quit message:
-```php
+```
+
 string getDefaultQuitMessage(Player $player)
 ```
 **Description:**<br>
@@ -937,7 +952,8 @@ Get default quit message.<br>
 *string* the default quit message
 
 ###### Get current quit message:
-```php
+```
+
 string getQuitMessage()
 ```
 **Description:**<br>
@@ -946,7 +962,8 @@ Get current quit message.<br>
 *string* the current quit message
 
 ###### Set current quit message:
-```php
+```
+
 function setQuitMessage($message)
 ```
 **Description:**<br>
@@ -955,7 +972,8 @@ Set current quit message.<br>
 *$message*
 
 ###### Check if default world change message is enabled:
-```php
+```
+
 boolean isDefaultWorldChangeMessageEnabled()
 ```
 **Description:**<br>
@@ -964,7 +982,8 @@ Check if default world change message is enabled.<br>
 *boolean*
 
 ###### Get default world change message:
-```php
+```
+
 string getDefaultWorldChangeMessage(Player $player, Level $origin, Level $target)
 ```
 **Description:**<br>
@@ -977,7 +996,8 @@ Get default world change message.<br>
 *string* the default world change message
 
 ###### Get current world change message:
-```php
+```
+
 string getWorldChangeMessage()
 ```
 **Description:**<br>
@@ -986,7 +1006,8 @@ Get current world change message.<br>
 *string* the current world change message
 
 ###### Set current world change message:
-```php
+```
+
 function setWorldChangeMessage($message)
 ```
 **Description:**<br>
@@ -995,7 +1016,8 @@ Set current world change message.<br>
 *$message*
 
 ###### Check if default death messages are custom:
-```php
+```
+
 boolean isDefaultDeathMessageCustom($cause = null)
 ```
 **Description:**<br>
@@ -1006,7 +1028,8 @@ Check if default death messages are custom.<br>
 *boolean*
 
 ###### Check if default death messages are hidden:
-```php
+```
+
 boolean isDefaultDeathMessageHidden($cause = null)
 ```
 **Description:**<br>
@@ -1017,7 +1040,8 @@ Check if default death messages are hidden<br>
 *boolean*
 
 ###### Get default death message related to the specified cause:
-```php
+```
+
 string getDefaultDeathMessage(Player $player, $cause = null)
 ```
 **Description:**<br>
@@ -1029,7 +1053,8 @@ Get default death message related to the specified cause.<br>
 *string* the default death message related to the specified cause
 
 ###### Get current death message:
-```php
+```
+
 string getDeathMessage()
 ```
 **Description:**<br>
@@ -1038,7 +1063,8 @@ Get current death message.<br>
 *string* the current death message
 
 ###### Set current death message:
-```php
+```
+
 function setDeathMessage($message)
 ```
 **Description:**<br>
