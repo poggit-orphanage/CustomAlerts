@@ -11,21 +11,21 @@
 
 namespace CustomAlerts;
 
-use pocketmine\scheduler\PluginTask;
+use pocketmine\scheduler\Task;
 use pocketmine\utils\TextFormat;
 
 use CustomAlerts\Events\CustomAlertsMotdUpdateEvent;
 
-class MotdTask extends PluginTask{
+class MotdTask extends Task{
 
 	private $plugin;
 	private $counter;
 
 	public function __construct(CustomAlerts $plugin){
-		parent::__construct($plugin);
+
 		$this->plugin = $plugin;
 		$this->counter = 0;
-	}
+                     }
 
 	public function onRun(int $tick){
 		$cfg = $this->plugin->getConfig()->getAll();

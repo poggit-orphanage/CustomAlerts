@@ -130,7 +130,7 @@ class CustomAlerts extends PluginBase{
 		$this->cfg = $this->getConfig()->getAll();
 		$this->getCommand("customalerts")->setExecutor(new Commands\Commands($this));
 		$this->getServer()->getPluginManager()->registerEvents(new EventListener($this), $this);
-		$this->getServer()->getScheduler()->scheduleRepeatingTask(new MotdTask($this), 20);
+		$this->getScheduler()->scheduleRepeatingTask(new MotdTask($this), 20);
 	}
 
 	//API Functions
